@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row maximo {{cssData.background + ' ' + cssData.texto}}">
+        <div class="col-2 mt-6">
+            <p class="display-2 text-center">Logueo</p>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12">
+
+            <form [formGroup]="form" (ngSubmit)="sendData($event)">
+                <div class="form-group">
+
+                    <label for="exampleInputEmail1">Correo electrónico</label>
+                    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email">
+                    <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)">
+                        <div *ngIf="form.get('email').hasError('required')" class="alert alert-danger">
+                            Email requerido
+                        </div>
+                        <div *ngIf="form.get('email').hasError('email')" class="alert alert-danger">
+                            Email inválido
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"
+                        placeholder="Password">
+                    <div
+                        *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)">
+                        <div *ngIf="form.get('password').hasError('required')" class="alert alert-danger">
+                            Contraseña obligatoria
+                        </div>
+                        <div *ngIf="form.get('password').hasError('minlength')" class="alert alert-danger">
+                            Mínimo 6 caracteres
+                        </div>
+                    </div>
+                </div>
+                <button  id="emailHelp" class="form-text text-muted"><a [routerLink]="['/register']">
+                        Crear cuenta</a> </button>
+                        <br>
+                <button [disabled]="form.invalid" type="submit" class="btn btn-outline-success">Ingresar</button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
